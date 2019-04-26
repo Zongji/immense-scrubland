@@ -1,5 +1,7 @@
 package com.example.controller;
 
+import com.example.dto.Ticks;
+import com.example.service.TestService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -10,6 +12,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -17,7 +20,8 @@ import java.util.Map;
 @RequiredArgsConstructor
 public class TestController {
 
-    private final DataSource dataSource;
+    private DataSource dataSource;
+    private final TestService testService;
 
     @RequestMapping("/")
     String index() {
@@ -27,6 +31,23 @@ public class TestController {
     @RequestMapping("/db")
     String db(Map<String, Object> model) {
 
+        return getString2(model);
+    }
+
+    private String getString2(Map<String, Object> model) {
+        System.out.println("===========test2===========");
+        testService.insert();
+        List<Ticks> list = testService.getList();
+
+        ArrayList<String> output = new ArrayList<String>();
+        list.stream().forEach(item -> {
+            output.add("Read from DB: " + item.getTick().toString());
+        });
+        model.put("records", output);
+        return "db";
+    }
+
+    private String getString(Map<String, Object> model) {
         System.out.println("=====================db=======");
         try (Connection connection = dataSource.getConnection()) {
             Statement stmt = connection.createStatement();
