@@ -1,7 +1,5 @@
 # java-getting-started
 
-[![CircleCI](https://circleci.com/gh/heroku/java-getting-started.svg?style=svg)](https://circleci.com/gh/heroku/java-getting-started)
-
 A barebones Java app, which can easily be deployed to Heroku.
 
 This application supports the [Getting Started with Java on Heroku](https://devcenter.heroku.com/articles/getting-started-with-java) article - check it out.
@@ -24,7 +22,7 @@ Your app should now be running on [localhost:5000](http://localhost:5000/).
 If you're going to use a database, ensure you have a local `.env` file that reads something like this:
 
 ```
-DATABASE_URL=postgres://localhost:5432/java_database_name
+JDBC_DATABASE_URL=jdbc:postgresql://localhost:5432/java_database_name
 ```
 
 ## Deploying to Heroku
