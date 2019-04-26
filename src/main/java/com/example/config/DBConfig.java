@@ -1,7 +1,9 @@
 package com.example.config;
 
+import com.baomidou.mybatisplus.extension.incrementer.PostgreKeyGenerator;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
@@ -24,4 +26,9 @@ public class DBConfig {
 //            return new HikariDataSource(config);
 //        }
 //    }
+
+    @Bean
+    public PostgreKeyGenerator oracleKeyGenerator() {
+        return new PostgreKeyGenerator();
+    }
 }
