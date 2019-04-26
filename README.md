@@ -23,6 +23,8 @@ If you're going to use a database, ensure you have a local `.env` file that read
 
 ```
 JDBC_DATABASE_URL=jdbc:postgresql://localhost:5432/java_database_name
+
+
 ```
 
 ## Deploying to Heroku
