@@ -1,6 +1,6 @@
 package com.example.service;
 
-import com.example.dto.Ticks;
+import com.example.dto.TicksDTO;
 import com.example.mapper.TicksMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -16,13 +16,13 @@ public class TestService {
 
     private final TicksMapper ticksMapper;
 
-    public List<Ticks> getList() {
-        List<Ticks> list = ticksMapper.selectList(null);
+    public List<TicksDTO> getList() {
+        List<TicksDTO> list = ticksMapper.selectList(null);
         return list;
     }
 
     public int insert() {
-        Ticks ticks = new Ticks();
+        TicksDTO ticks = new TicksDTO();
         ticks.setTick(new Date());
         int i = ticksMapper.insert(ticks);
         return i;

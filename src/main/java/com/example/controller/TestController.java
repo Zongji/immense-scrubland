@@ -1,6 +1,6 @@
 package com.example.controller;
 
-import com.example.dto.Ticks;
+import com.example.dto.TicksDTO;
 import com.example.service.TestService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -37,7 +37,7 @@ public class TestController {
     private String getString2(Map<String, Object> model) {
         System.out.println("===========test2===========");
         testService.insert();
-        List<Ticks> list = testService.getList();
+        List<TicksDTO> list = testService.getList();
 
         ArrayList<String> output = new ArrayList<String>();
         list.stream().forEach(item -> {
@@ -51,7 +51,7 @@ public class TestController {
         System.out.println("=====================db=======");
         try (Connection connection = dataSource.getConnection()) {
             Statement stmt = connection.createStatement();
-            stmt.executeUpdate("CREATE TABLE IF NOT EXISTS ticks (tick timestamp)");
+            stmt.executeUpdate("CREATE TABLE IF NOT EXISTS ticks (id bigserial not null, tick timestamp)");
             stmt.executeUpdate("INSERT INTO ticks VALUES (now())");
             ResultSet rs = stmt.executeQuery("SELECT tick FROM ticks");
 
